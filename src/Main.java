@@ -59,11 +59,9 @@ public class Main {
         Usuario usuario;
         String password;
         int passwordHash;
-
         System.out.println("Informe seu email:\n");
         mail = input.readLine();
         id = read(mail);
-
 
         if (!mail.isBlank()) {
             if(id != -1) {
@@ -72,11 +70,9 @@ public class Main {
                System.out.println("Digite sua senha:");
                password = input.readLine();
                passwordHash = password.hashCode();
-
                if (passwordHash == usuario.getSenha()) {
                    System.out.println("Seja bem-vindo!");
                } else System.out.println("As senhas não coincidem");
-
             } else System.out.println("Email não encontrado");
         }
     }
@@ -90,7 +86,6 @@ public class Main {
         String name;
         String password;
         String option;
-
         System.out.println("Informe seu email:\n");
         mail = input.readLine();
 
@@ -103,13 +98,11 @@ public class Main {
                 password = input.readLine();
                 System.out.println("Deseja confirmar o cadastro? (Sim/Não)");
                 option = input.readLine();
-
                 if (option.charAt(0) == 'S' || option.charAt(0) == 's') {
                     int id = dao.create(new Usuario(-1,name,mail,password.hashCode()));
                     he2.create(new UsuarioKeyValuePair(mail,id));
                     System.out.println("Conta criada com sucesso");
                 }
-
             } else System.out.println("Email já cadastrado");
         }
     }
