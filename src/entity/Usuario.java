@@ -8,11 +8,11 @@ public class Usuario implements Registro {
     private int id;
     private String nome;
     private String email;
-    private String senha;
+    private int senha;
 
     public Usuario() {}
 
-    public Usuario(int id, String nome, String email, String senha) {
+    public Usuario(int id, String nome, String email, int senha) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -25,7 +25,7 @@ public class Usuario implements Registro {
         this.id = entrada.readInt();
         this.nome = entrada.readUTF();
         this.email = entrada.readUTF();
-        this.senha = entrada.readUTF();
+        this.senha = entrada.readInt();
     }
 
     public byte[] toByteArray() throws IOException {
@@ -34,7 +34,7 @@ public class Usuario implements Registro {
         saida.writeInt(this.id);
         saida.writeUTF(this.nome);
         saida.writeUTF(this.email);
-        saida.writeUTF(this.senha);
+        saida.writeInt(this.senha);
         return dados.toByteArray();
     }
 
@@ -59,10 +59,10 @@ public class Usuario implements Registro {
         this.email = email;
     }
 
-    public String getSenha() {
+    public int getSenha() {
         return senha;
     }
-    public void setSenha(String senha) {
+    public void setSenha(int senha) {
         this.senha = senha;
     }
 }

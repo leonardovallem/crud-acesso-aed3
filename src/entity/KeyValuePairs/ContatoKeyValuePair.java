@@ -29,6 +29,10 @@ public class ContatoKeyValuePair implements RegistroHashExtensivel<ContatoKeyVal
         }
     }
 
+    public int getId() {
+        return id;
+    }
+
     @Override
     public int hashCode() {
         return this.telefone.hashCode();

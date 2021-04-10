@@ -27,6 +27,10 @@ public class RegistroKeyValuePair implements RegistroHashExtensivel<RegistroKeyV
         return posicao;
     }
 
+    public int getId() {
+        return id;
+    }
+
     @Override
     public int hashCode() {
         return this.id;

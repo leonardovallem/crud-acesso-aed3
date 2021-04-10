@@ -50,6 +50,10 @@ public class UsuarioKeyValuePair implements RegistroHashExtensivel<UsuarioKeyVal
         }
     }
 
+    public int getId() {
+        return id;
+    }
+
     @Override
     public int hashCode() {
         return this.email.hashCode();

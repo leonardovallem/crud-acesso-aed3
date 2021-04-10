@@ -17,18 +17,17 @@ public class DAO<T extends Registro> {
     private final Constructor<T> constructor;
     private final RandomAccessFile raf;
     private final HashExtensivel<RegistroKeyValuePair> he;
+    public final String file;
 
     public DAO(Constructor<T> constructor, String file) throws Exception {
         this.constructor = constructor;
+        this.file = file;
 
-        File d = new File("data");
-        delete(d); d.mkdir();
-
-        this.raf = new RandomAccessFile("data/" + file, "rw");
+        this.raf = new RandomAccessFile("src/files/" + file, "rw");
 
         he = new HashExtensivel<>(RegistroKeyValuePair.class.getConstructor(), 4,
-                "data/" + file.replace(".db", "") + ".hash_d.db",
-                "data/" + file.replace(".db", "") + ".hash_c.db");
+                "src/files/" + file.replace(".db", "") + ".hash_d.db",
+                "src/files/" + file.replace(".db", "") + ".hash_c.db");
     }
 
     public int create(T objeto) throws IOException {

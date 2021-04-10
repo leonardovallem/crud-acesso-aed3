@@ -14,6 +14,8 @@ import java.io.IOException;
 
 public interface RegistroHashExtensivel<T> {
 
+    public int getId();
+
     public int hashCode(); // chave numérica para ser usada no diretório
 
     public short size(); // tamanho FIXO do registro
