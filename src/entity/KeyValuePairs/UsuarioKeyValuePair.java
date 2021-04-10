@@ -29,17 +29,17 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class PessoaKeyValuePair implements RegistroHashExtensivel<PessoaKeyValuePair> {
+public class UsuarioKeyValuePair implements RegistroHashExtensivel<UsuarioKeyValuePair> {
 
     private String email;
     private int id;
     private final short TAMANHO = 44;
 
-    public PessoaKeyValuePair() {
+    public UsuarioKeyValuePair() {
         this("", -1);
     }
 
-    public PessoaKeyValuePair(String e, int i) {
+    public UsuarioKeyValuePair(String e, int i) {
         try {
             this.email = e;
             this.id = i;

@@ -2,6 +2,8 @@ package dal;
 
 import data.Registro;
 import entity.KeyValuePairs.RegistroKeyValuePair;
+import entity.KeyValuePairs.UsuarioKeyValuePair;
+import entity.Usuario;
 import service.impl.HashExtensivel;
 
 import java.io.File;
@@ -55,6 +57,13 @@ public class DAO<T extends Registro> {
 
         return objetoID;
     }
+
+    /**
+     * Fazer um metodo read que recebe String
+     * Se receber String é o email
+     * Instanciar HashExtensivel com UsuarioKeyValuePair
+     * Pegar o id e chamar o read(int)
+     */
 
     public T read(int id) throws Exception {
         T objeto = null;
@@ -131,6 +140,13 @@ public class DAO<T extends Registro> {
 
         return status;
     }
+
+//    delete(String email) {
+//        var he2 = new HashExtensivel<UsuarioKeyValuePair>();
+//        var id = he2.read(email);
+//        he2.delete(id);
+//        delete(id);
+//    }
 
     public boolean delete(int id) {
         boolean status = true;
