@@ -8,14 +8,18 @@ public class Usuario implements Registro {
     private int id;
     private String nome;
     private String email;
+    private String perguntaSecreta;
+    private String respostaSecreta;
     private int senha;
 
     public Usuario() {}
 
-    public Usuario(int id, String nome, String email, int senha) {
+    public Usuario(int id, String nome, String email, String perguntaSecreta, String respostaSecreta, int senha) {
         this.id = id;
         this.nome = nome;
         this.email = email;
+	this.perguntaSecreta = perguntaSecreta;
+	this.respostaSecreta = respostaSecreta;
         this.senha = senha;
     }
 
@@ -25,6 +29,8 @@ public class Usuario implements Registro {
         this.id = entrada.readInt();
         this.nome = entrada.readUTF();
         this.email = entrada.readUTF();
+	this.perguntaSecreta = entrada.readUTF();
+	this.respostaSecreta = entrada.readUTF();
         this.senha = entrada.readInt();
     }
 
@@ -34,6 +40,8 @@ public class Usuario implements Registro {
         saida.writeInt(this.id);
         saida.writeUTF(this.nome);
         saida.writeUTF(this.email);
+	saida.writeUTF(this.perguntaSecreta);
+	saida.writeUTF(this.respostaSecreta);
         saida.writeInt(this.senha);
         return dados.toByteArray();
     }
@@ -57,6 +65,20 @@ public class Usuario implements Registro {
     }
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPerguntaSecreta() {
+	return perguntaSecreta;
+    }
+    public void setPerguntaSecreta(String perguntaSecreta) {
+	this.perguntaSecreta = perguntaSecreta;
+    }
+
+    public String getRespostaSecreta() {
+	return respostaSecreta;
+    }
+    public void setRespostaSecreta(String respostaSecreta) {
+	this.respostaSecreta = respostaSecreta;
     }
 
     public int getSenha() {

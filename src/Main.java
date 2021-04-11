@@ -27,7 +27,8 @@ public class Main {
             System.out.println("ACESSO\n");
 
             System.out.println("1) Acesso ao sistema\n" +
-                    "2) Novo usuário (primeiro acesso)\n\n" +
+                    "2) Novo usuário (primeiro acesso)\n" +
+		    "3) Esqueci minha senha\n\n" +
                     "0) Sair\n");
 
             System.out.print("Opção: ");
@@ -43,6 +44,9 @@ public class Main {
                 case 2:
                     createAccount();
                     break;
+		case 3:
+		    forgotPassword();
+		    break;
                 default:
                     System.out.println("A opção fornecida é inválida.\n");
             }
@@ -85,6 +89,8 @@ public class Main {
         String mail;
         String name;
         String password;
+	String secretQuestion;
+	String secretAnswer;
         String option;
         System.out.println("Informe seu email:\n");
         mail = input.readLine();
@@ -96,15 +102,42 @@ public class Main {
                 name = input.readLine();
                 System.out.println("Digite sua senha:");
                 password = input.readLine();
+		System.out.println("Digite sua pergunta secreta (validação para alteração de senha):");
+		secretQuestion = input.readLine();
+		System.out.println("Digite a resposta da sua pergunta secreta:");
+		secretAnswer = input.readLine();
                 System.out.println("Deseja confirmar o cadastro? (Sim/Não)");
                 option = input.readLine();
                 if (option.charAt(0) == 'S' || option.charAt(0) == 's') {
-                    int id = dao.create(new Usuario(-1,name,mail,password.hashCode()));
+                    int id = dao.create(new Usuario(-1,name,mail,secretQuestion,secretAnswer,password.hashCode()));
                     he2.create(new UsuarioKeyValuePair(mail,id));
                     System.out.println("Conta criada com sucesso");
                 }
             } else System.out.println("Email já cadastrado");
         }
+    }
+
+    private static void forgotPassword() throws Exception {
+	System.out.print("Informe seu email: ");
+	String email = input.readLine();
+	if (!email.isBlank()) {
+	    int id = read(email);
+	    if (id != -1) {
+		Usuario user = dao.read(id);
+		System.out.println("Pergunta secreta: " + user.getPerguntaSecreta());
+		if (input.readLine().equals(user.getRespostaSecreta())) {
+		    System.out.print("Digite sua nova senha: ");
+		    user.setSenha(input.readLine().hashCode());
+		    if (dao.update(user)) {
+			System.out.println("Senha alterada com sucesso!");
+		    }
+		} else {
+		    System.out.println("Resposta incorreta");
+		}
+	    } else {
+		System.out.println("Email não encontrado");
+	    }
+	}
     }
 
     private static int read(String mail) throws Exception
