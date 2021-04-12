@@ -12,3 +12,8 @@ Already running
 2021-04-12 10:28:45,565 [ 251542]   WARN - s.ui.configuration.SdkDetector - No version is returned for detected SDK IDEA JDK at /home/leonardovallem/Packages/idea-IC-203.7148.57 
 2021-04-12 10:29:18,110 [ 284087]   WARN - ystem.impl.ActionPopupMenuImpl - 4932ms to fill popup menu ProjectViewPopup 
 2021-04-12 10:29:18,188 [ 284165]   WARN - .diagnostic.PerformanceWatcher - UI was frozen for 5089ms, details saved to /home/leonardovallem/.cache/JetBrains/IdeaIC2020.3/log/threadDumps-freeze-20210412-102918-IC-203.7148.57-ActionPopupMenuImpl_MyMenu.show-5sec 
+2021-04-12 11:11:55,942 [2841919]   WARN - com.intellij.ide.IdeEventQueue - Too many mouse clicks (17)!!! 
+2021-04-12 11:26:02,473 [3688450]   WARN - com.intellij.ide.IdeEventQueue - Too many mouse clicks (16)!!! 
+2021-04-12 11:26:02,475 [3688452]   WARN - com.intellij.ide.IdeEventQueue - Too many mouse clicks (16)!!! 
+2021-04-12 11:26:02,476 [3688453]   WARN - com.intellij.ide.IdeEventQueue - Too many mouse clicks (16)!!! 
+2021-04-12 11:26:02,478 [3688455]   WARN - com.intellij.ide.IdeEventQueue - Too many mouse clicks (16)!!! 

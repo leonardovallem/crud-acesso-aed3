@@ -2,8 +2,6 @@ package dal;
 
 import data.Registro;
 import entity.KeyValuePairs.RegistroKeyValuePair;
-import entity.KeyValuePairs.UsuarioKeyValuePair;
-import entity.Usuario;
 import service.impl.HashExtensivel;
 
 import java.io.File;

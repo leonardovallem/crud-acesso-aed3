@@ -24,11 +24,11 @@ public class Main {
 
         int option = -1;
         while(option != 0) {
-            System.out.println("ACESSO\n");
+            System.out.println("\nACESSO\n");
 
             System.out.println("1) Acesso ao sistema\n" +
                     "2) Novo usuário (primeiro acesso)\n" +
-		    "3) Esqueci minha senha\n\n" +
+		            "3) Esqueci minha senha\n\n" +
                     "0) Sair\n");
 
             System.out.print("Opção: ");
@@ -44,73 +44,94 @@ public class Main {
                 case 2:
                     createAccount();
                     break;
-		case 3:
-		    forgotPassword();
-		    break;
+                case 3:
+                    forgotPassword();
+                    break;
                 default:
                     System.out.println("A opção fornecida é inválida.\n");
             }
         }
     }
 
-    /**
-     * Método que permite acesso ao sistema
-     * Não necessita do usuário estar logado
-     */
     private static void access() throws Exception {
-        int id;
-        String mail;
+        int id, passwordHash;
+        String mail, password;
         Usuario usuario;
-        String password;
-        int passwordHash;
-        System.out.println("Informe seu email:\n");
-        mail = input.readLine();
-        id = read(mail);
 
-        if (!mail.isBlank()) {
-            if(id != -1) {
-               usuario = dao.read(id);
-               he2.read(id);
-               System.out.println("Digite sua senha:");
+        System.out.println("Informe seu email:");
+
+        do {
+            mail = input.readLine();
+            id = read(mail);
+        } while(mail.isBlank());
+
+        if(id != -1) {
+            usuario = dao.read(id);
+//            he2.read(id);
+
+            System.out.println("Digite sua senha:");
+            int chances = 3;
+            do {
                password = input.readLine();
                passwordHash = password.hashCode();
-               if (passwordHash == usuario.getSenha()) {
-                   System.out.println("Seja bem-vindo!");
-               } else System.out.println("As senhas não coincidem");
-            } else System.out.println("Email não encontrado");
+
+               if(passwordHash != usuario.getSenha()) {
+                   chances--;
+                   if(chances > 0) System.out.println("Senha incorreta. Tente novamente");
+               }
+            } while(passwordHash != usuario.getSenha() && chances > 0);
+
+            if (chances == 0) System.out.println("Três tentativas incorretas. Tente novamente mais tarde.");
+            else loggedInMenu();
+        } else System.out.println("Email não encontrado");
+    }
+
+    private static void loggedInMenu() throws IOException {
+        System.out.println("Seja bem-vindo!\nO que deseja fazer?");
+
+        int option = -1;
+
+        while(option != 0) {
+            System.out.println("\n1) Acessar perguntas e respostas (EM BREVE)" +
+                    "\n\n0) Logout");
+            option = Integer.parseInt(input.readLine());
+
+            System.out.println();
+            switch (option) {
+                case 0:
+                    System.out.println("Fazendo logout ...\n");
+                    break;
+                case 1:
+                    System.out.println("==== EM BREVE ====");
+                    break;
+                default:
+                    System.out.println("Opção inválida.");
+            }
         }
     }
 
-    /**
-     * Método que permite a criação de uma conta
-     * @link https://replit.com/@kutova/TabelaHashExtensivel
-     */
     private static void createAccount() throws Exception {
-        String mail;
-        String name;
-        String password;
-	String secretQuestion;
-	String secretAnswer;
-        String option;
+        String mail, name, password, secretQuestion, secretAnswer, option;
         System.out.println("Informe seu email:\n");
         mail = input.readLine();
 
         if (!mail.isBlank()) {
-            if(read(mail) == -1)
-            {
+            if(read(mail) == -1) {
                 System.out.println("Digite seu nome:");
                 name = input.readLine();
                 System.out.println("Digite sua senha:");
                 password = input.readLine();
-		System.out.println("Digite sua pergunta secreta (validação para alteração de senha):");
-		secretQuestion = input.readLine();
-		System.out.println("Digite a resposta da sua pergunta secreta:");
-		secretAnswer = input.readLine();
+
+                System.out.println("Digite sua pergunta secreta (validação para alteração de senha):");
+                secretQuestion = input.readLine();
+                System.out.println("Digite a resposta da sua pergunta secreta:");
+                secretAnswer = input.readLine();
+
                 System.out.println("Deseja confirmar o cadastro? (Sim/Não)");
                 option = input.readLine();
                 if (option.charAt(0) == 'S' || option.charAt(0) == 's') {
-                    int id = dao.create(new Usuario(-1,name,mail,secretQuestion,secretAnswer,password.hashCode()));
-                    he2.create(new UsuarioKeyValuePair(mail,id));
+                    int id = dao.create(new Usuario(-1, name, mail, secretQuestion, secretAnswer, password.hashCode()));
+                    he2.create(new UsuarioKeyValuePair(mail, id));
                     System.out.println("Conta criada com sucesso");
                 }
             } else System.out.println("Email já cadastrado");
@@ -118,34 +139,42 @@ public class Main {
     }
 
     private static void forgotPassword() throws Exception {
-	System.out.print("Informe seu email: ");
-	String email = input.readLine();
-	if (!email.isBlank()) {
-	    int id = read(email);
-	    if (id != -1) {
-		Usuario user = dao.read(id);
-		System.out.println("Pergunta secreta: " + user.getPerguntaSecreta());
-		if (input.readLine().equals(user.getRespostaSecreta())) {
-		    System.out.print("Digite sua nova senha: ");
-		    user.setSenha(input.readLine().hashCode());
-		    if (dao.update(user)) {
-			System.out.println("Senha alterada com sucesso!");
-		    }
-		} else {
-		    System.out.println("Resposta incorreta");
-		}
-	    } else {
-		System.out.println("Email não encontrado");
-	    }
-	}
+        System.out.print("Informe seu email: ");
+        String email = input.readLine();
+        if (!email.isBlank()) {
+            int id = read(email);
+            if (id != -1) {
+                Usuario user = dao.read(id);
+                System.out.println("Qual a resposta para a pergunta \"" + user.getPerguntaSecreta() + "\"?");
+                String answer = input.readLine();
+
+                int chances = 3;
+                while(!answer.equals(user.getRespostaSecreta()) && chances > 0) {
+                    if(!answer.equals(user.getRespostaSecreta())) {
+                        chances--;
+                        if(chances > 0) {
+                            System.out.println("Resposta incorreta. Tente novamente");
+                            answer = input.readLine();
+                        } else System.out.println("Três tentativas incorretas. Tente novamente mais tarde.");
+                    }
+                }
+                if(answer.equals(user.getRespostaSecreta())) {
+                    System.out.print("Digite sua nova senha: ");
+                    user.setSenha(input.readLine().hashCode());
+                    if (dao.update(user)) {
+                        System.out.println("Senha alterada com sucesso!");
+                    } else System.out.println("Erro durante a operação");
+                }
+            } else {
+                System.out.println("Email não encontrado");
+            }
+        }
     }
 
-    private static int read(String mail) throws Exception
-    {
+    private static int read(String mail) throws Exception {
         int id = -1;
         UsuarioKeyValuePair aux = he2.read(mail.hashCode());
         if(aux != null) id = aux.getId();
         return id;
     }
-
 }
