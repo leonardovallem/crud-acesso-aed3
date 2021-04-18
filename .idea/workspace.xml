@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="eded4c5d-5644-46bd-b81d-6bbd33637e41" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nohup.out" beforeDir="false" afterPath="$PROJECT_DIR$/nohup.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Acesso/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Acesso/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Acesso/dal/DAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Acesso/dal/DAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Acesso/files/arq" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Acesso/files/arq" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/DAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/files/arq" beforeDir="false" afterPath="$PROJECT_DIR$/src/files/arq" afterDir="false" />
-    </list>
+    <list default="true" id="eded4c5d-5644-46bd-b81d-6bbd33637e41" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
