@@ -18,8 +18,8 @@ public class Usuario implements Registro {
         this.id = id;
         this.nome = nome;
         this.email = email;
-	this.perguntaSecreta = perguntaSecreta;
-	this.respostaSecreta = respostaSecreta;
+        this.perguntaSecreta = perguntaSecreta;
+        this.respostaSecreta = respostaSecreta;
         this.senha = senha;
     }
 
@@ -29,8 +29,8 @@ public class Usuario implements Registro {
         this.id = entrada.readInt();
         this.nome = entrada.readUTF();
         this.email = entrada.readUTF();
-	this.perguntaSecreta = entrada.readUTF();
-	this.respostaSecreta = entrada.readUTF();
+        this.perguntaSecreta = entrada.readUTF();
+        this.respostaSecreta = entrada.readUTF();
         this.senha = entrada.readInt();
     }
 
@@ -40,8 +40,8 @@ public class Usuario implements Registro {
         saida.writeInt(this.id);
         saida.writeUTF(this.nome);
         saida.writeUTF(this.email);
-	saida.writeUTF(this.perguntaSecreta);
-	saida.writeUTF(this.respostaSecreta);
+        saida.writeUTF(this.perguntaSecreta);
+        saida.writeUTF(this.respostaSecreta);
         saida.writeInt(this.senha);
         return dados.toByteArray();
     }

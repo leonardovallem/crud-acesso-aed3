@@ -4,7 +4,6 @@ import entity.Usuario;
 import service.impl.HashExtensivel;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
@@ -20,7 +19,7 @@ public class Main {
                 "src/files/" + dao.file.replace(".db", "") + ".mail_c.db");
 
         System.out.println("PERGUNTAS 1.0\n" +
-                "=============\n");
+                "=============");
 
         int option = -1;
         while(option != 0) {
@@ -67,7 +66,6 @@ public class Main {
 
         if(id != -1) {
             usuario = dao.read(id);
-//            he2.read(id);
 
             System.out.println("Digite sua senha:");
             int chances = 3;
@@ -82,32 +80,11 @@ public class Main {
             } while(passwordHash != usuario.getSenha() && chances > 0);
 
             if (chances == 0) System.out.println("Três tentativas incorretas. Tente novamente mais tarde.");
-            else loggedInMenu();
-        } else System.out.println("Email não encontrado");
-    }
-
-    private static void loggedInMenu() throws IOException {
-        System.out.println("Seja bem-vindo!\nO que deseja fazer?");
-
-        int option = -1;
-
-        while(option != 0) {
-            System.out.println("\n1) Acessar perguntas e respostas (EM BREVE)" +
-                    "\n\n0) Logout");
-            option = Integer.parseInt(input.readLine());
-
-            System.out.println();
-            switch (option) {
-                case 0:
-                    System.out.println("Fazendo logout ...\n");
-                    break;
-                case 1:
-                    System.out.println("==== EM BREVE ====");
-                    break;
-                default:
-                    System.out.println("Opção inválida.");
+            else {
+                var auth = new Authenticated(id);
+                auth.loggedInMenu();
             }
-        }
+        } else System.out.println("Email não encontrado");
     }
 
     private static void createAccount() throws Exception {
