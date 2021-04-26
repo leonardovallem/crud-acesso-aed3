@@ -4,22 +4,21 @@ import java.util.Scanner;
 import java.io.File;
 
 public class Main {
-
     /**
      * @REMOVER_CLASSE_MAIN_E_TIRAR_A_BPLUSTREE_DO_PACKAGE:_btree
      * */
-    
+
     // Método principal apenas para testes
     public static void main(String[] args) {
 
-        BPlusTree arvore;
+        btree.BPlusTree arvore;
         Scanner console = new Scanner(System.in);
 
         try {
-            File d = new File("dados");
+            File d = new File("files");
             if (!d.exists())
                 d.mkdir();
-            arvore = new BPlusTree(5, "dados/arvore.db");
+            arvore = new btree.BPlusTree(5, "files/arvore.db");
 
             int opcao;
             do {
@@ -41,7 +40,7 @@ public class Main {
                     case 1: {
                         System.out.println("\nINCLUSÃO");
                         System.out.print("Chave: ");
-                        String chave = console.nextLine();
+                        int chave = Integer.valueOf(console.nextLine());
                         System.out.print("Dado: ");
                         int dado = Integer.valueOf(console.nextLine());
                         arvore.create(chave, dado);
@@ -51,15 +50,20 @@ public class Main {
                     case 2: {
                         System.out.println("\nBUSCA");
                         System.out.print("Chave: ");
-                        String chave = console.nextLine();
-                        System.out.print("Dado: " + arvore.read(chave));
+                        int chave = Integer.valueOf(console.nextLine());
+                        int dados[] = arvore.read(chave);
+                        System.out.print("Dados: ");
+                        for(int i=0; i<dados.length; i++)
+                            System.out.print(dados[i]+" ");
                     }
                     break;
                     case 3: {
                         System.out.println("\nEXCLUSÃO");
                         System.out.print("Chave: ");
-                        String chave = console.nextLine();
-                        arvore.delete(chave);
+                        int chave = Integer.valueOf(console.nextLine());
+                        System.out.print("Dado: ");
+                        int dado = Integer.valueOf(console.nextLine());
+                        arvore.delete(chave, dado);
                         arvore.print();
                     }
                     break;
