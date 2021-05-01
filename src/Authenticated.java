@@ -1,10 +1,12 @@
 import dal.DAO;
+import data.btree.BPlusTree;
 import entity.Pergunta;
 import entity.Usuario;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 /**
  * Classe que permite a navegação no
@@ -14,10 +16,12 @@ public class Authenticated {
     private static final BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
     private final int idUsuario;
     private final DAO<Pergunta> dao;
+    private final BPlusTree perguntasStorage;
 
     public Authenticated(int idUsuario) throws Exception {
         this.idUsuario = idUsuario;
         this.dao = new DAO<>(Pergunta.class.getConstructor(),"perguntas.db");
+        this.perguntasStorage = new BPlusTree(5, "src/files/perguntas.tree.db");
     }
 
     /**
@@ -26,7 +30,7 @@ public class Authenticated {
         * alterar sua senha
         * outras opções que o usuário precisar ter à disposição
      */
-    public void loggedInMenu() throws IOException {
+    public void loggedInMenu() throws Exception {
         System.out.println("Seja bem-vindo!\nO que deseja fazer?");
 
         int option = -1;
@@ -94,7 +98,7 @@ public class Authenticated {
     /**
      * Menu que permite ao usuário:
         * criar perguntas*/
-    private void perguntasMenu() throws IOException {
+    private void perguntasMenu() throws Exception {
         int notificacoes = 0;   // pegar dos arquivos as notificacoes
         int option = -1;
 
@@ -136,7 +140,7 @@ public class Authenticated {
          * arquivar
      *     suas perguntas
      */
-    private void QA() throws IOException {
+    private void QA() throws Exception {
         int option = -1;
 
         while(option != 0) {
@@ -180,43 +184,46 @@ public class Authenticated {
         System.out.println(" ===== EM BREVE =====");
     }
 
-    private void listPerguntas() {
-        // arvore B+
+    private int[] listPerguntas() throws Exception {
+        int[] perguntasIds = perguntasStorage.read(idUsuario);
+        for (int i = 0; i < perguntasIds.length; i++) {
+            System.out.println((i+1) + ". " + dao.read(perguntasIds[i]));
+        }
+        return perguntasIds;
     }
 
     private void createPergunta() throws IOException {
-        System.out.println("O que você deseja perguntar?");
+        System.out.print("O que você deseja perguntar?\n\t↳ ");
         String perguntar = input.readLine();
 
         Pergunta pergunta = new Pergunta(idUsuario, perguntar);
+
         dao.create(pergunta);
-
-        // arvore B+
+        perguntasStorage.create(idUsuario, pergunta.getId());
     }
 
-    private void updatePergunta() throws IOException {
-        System.out.println("Qual pergunta você deseja alterar?");
-        String pergunta = input.readLine();
+    private void updatePergunta() throws Exception {
+        int[] all = listPerguntas();
+        System.out.println("Qual pergunta você deseja alterar? (1-" + all.length + ")");
+        int alterar = Integer.parseInt(input.readLine());
 
-        // if(pergunta exists)
-        System.out.println("O que você deseja perguntar?");
-        String novaPergunta = input.readLine();
+        Pergunta pergunta = dao.read(all[alterar-1]);
+        if(pergunta != null) {
+            System.out.print("O que você deseja perguntar agora?\n\t↳ ");
+            String novaPergunta = input.readLine();
 
-//        Pergunta perguntaObj = read(pergunta);
-//        perguntaObj.setPergunta(novaPergunta);
-//        write(perg);
-
-        // arvore B+
+            pergunta.setPergunta(novaPergunta);
+            dao.update(pergunta);
+        } else System.out.println("Pergunta inválida.");
     }
 
-    private void archivePergunta() throws IOException {
-        System.out.println("Qual pergunta você deseja alterar?");
-        String pergunta = input.readLine();
+    private void archivePergunta() throws Exception {
+        int[] all = listPerguntas();
+        System.out.println("Qual pergunta você deseja arquivar? (1-" + all.length + ")");
+        int arquivar = Integer.parseInt(input.readLine());
 
-//        Pergunta perguntaObj = read(pergunta);
-//        perguntaObj.setAtiva(false);
-//        write(perg);
-
-        // arvore B+
+        Pergunta pergunta = dao.read(all[arquivar-1]);
+        pergunta.setAtiva(false);
+        dao.update(pergunta);
     }
 }

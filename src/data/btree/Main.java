@@ -11,14 +11,13 @@ public class Main {
     // Método principal apenas para testes
     public static void main(String[] args) {
 
-        btree.BPlusTree arvore;
+        BPlusTree arvore;
         Scanner console = new Scanner(System.in);
 
         try {
             File d = new File("files");
-            if (!d.exists())
-                d.mkdir();
-            arvore = new btree.BPlusTree(5, "files/arvore.db");
+            if (!d.exists()) d.mkdir();
+            arvore = new BPlusTree(5, "files/arvore.db");
 
             int opcao;
             do {

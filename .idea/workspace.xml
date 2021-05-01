@@ -3,8 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="eded4c5d-5644-46bd-b81d-6bbd33637e41" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Authenticated.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Authenticated.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/btree/BPlusTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/btree/BPlusTree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/btree/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/btree/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Pergunta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Pergunta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/files/perguntas.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/files/perguntas.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/files/perguntas.hash_c.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/files/perguntas.hash_c.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

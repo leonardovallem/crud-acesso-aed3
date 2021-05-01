@@ -60,7 +60,7 @@ public class Pergunta implements Registro {
 
     @Override
     public String toString() {
-        return new Date(criacao) + " (" + (ativa ? "ATIVA" : "ARQUIVADA") + ")\n" + pergunta;
+        return new Date(criacao) + " (" + (ativa ? "ATIVA" : "ARQUIVADA") + ")\n" + "  ↳ " + pergunta + "\n";
     }
 
     @Override
