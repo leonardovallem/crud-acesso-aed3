@@ -13,7 +13,7 @@
  * v1.0 - 2019
  */
 
-package data.btree;
+package data;
 
 import java.io.*;
 import java.util.ArrayList;

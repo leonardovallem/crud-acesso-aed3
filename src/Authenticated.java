@@ -1,12 +1,11 @@
 import dal.DAO;
-import data.btree.BPlusTree;
+import data.BPlusTree;
 import entity.Pergunta;
 import entity.Usuario;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 
 /**
  * Classe que permite a navegação no
