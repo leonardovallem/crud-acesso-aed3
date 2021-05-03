@@ -11,16 +11,18 @@ public class Usuario implements Registro {
     private String perguntaSecreta;
     private String respostaSecreta;
     private int senha;
+    private boolean isAdmin;
 
     public Usuario() {}
 
-    public Usuario(int id, String nome, String email, String perguntaSecreta, String respostaSecreta, int senha) {
+    public Usuario(int id, String nome, String email, String perguntaSecreta, String respostaSecreta, int senha, boolean isAdmin) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.perguntaSecreta = perguntaSecreta;
         this.respostaSecreta = respostaSecreta;
         this.senha = senha;
+        this.isAdmin = isAdmin;
     }
 
     public void fromByteArray(byte[] bytes) throws IOException {
@@ -32,6 +34,7 @@ public class Usuario implements Registro {
         this.perguntaSecreta = entrada.readUTF();
         this.respostaSecreta = entrada.readUTF();
         this.senha = entrada.readInt();
+        this.isAdmin = entrada.readBoolean();
     }
 
     public byte[] toByteArray() throws IOException {
@@ -43,6 +46,7 @@ public class Usuario implements Registro {
         saida.writeUTF(this.perguntaSecreta);
         saida.writeUTF(this.respostaSecreta);
         saida.writeInt(this.senha);
+        saida.writeBoolean(this.isAdmin);
         return dados.toByteArray();
     }
 
@@ -86,5 +90,12 @@ public class Usuario implements Registro {
     }
     public void setSenha(int senha) {
         this.senha = senha;
+    }
+
+    public boolean getIsAdmin() {
+        return isAdmin;
+    }
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 }

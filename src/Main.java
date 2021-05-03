@@ -1,5 +1,6 @@
 import dal.DAO;
 import entity.KeyValuePairs.UsuarioKeyValuePair;
+import files.Const;
 import entity.Usuario;
 import service.impl.HashExtensivel;
 
@@ -13,10 +14,10 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        dao = new DAO<>(Usuario.class.getConstructor(),"arq");
+        dao = new DAO<>(Usuario.class.getConstructor(), Const.UsuariosDB);
         he2 = new HashExtensivel<>(UsuarioKeyValuePair.class.getConstructor(), 4,
-                "src/files/" + dao.file.replace(".db", "") + ".mail_d.db",
-                "src/files/" + dao.file.replace(".db", "") + ".mail_c.db");
+                Const.FliesPath + dao.file.replace(".db", ".mail_d.db"),
+                Const.FliesPath + dao.file.replace(".db", ".mail_c.db"));
 
         System.out.println("PERGUNTAS 1.0\n" +
                 "=============");
@@ -53,7 +54,7 @@ public class Main {
     }
 
     private static void access() throws Exception {
-        int id, passwordHash;
+        int passwordHash;
         String mail, password;
         Usuario usuario;
 
@@ -61,12 +62,10 @@ public class Main {
 
         do {
             mail = input.readLine();
-            id = read(mail);
+            usuario = read(mail);
         } while(mail.isBlank());
 
-        if(id != -1) {
-            usuario = dao.read(id);
-
+        if(usuario != null) {
             System.out.println("Digite sua senha:");
             int chances = 3;
             do {
@@ -81,7 +80,7 @@ public class Main {
 
             if (chances == 0) System.out.println("Três tentativas incorretas. Tente novamente mais tarde.");
             else {
-                var auth = new Authenticated(id);
+                var auth = new Authenticated(usuario);
                 auth.loggedInMenu();
             }
         } else System.out.println("Email não encontrado");
@@ -93,7 +92,7 @@ public class Main {
         mail = input.readLine();
 
         if (!mail.isBlank()) {
-            if(read(mail) == -1) {
+            if(read(mail) == null) {
                 System.out.println("Digite seu nome:");
                 name = input.readLine();
                 System.out.println("Digite sua senha:");
@@ -107,7 +106,15 @@ public class Main {
                 System.out.println("Deseja confirmar o cadastro? (Sim/Não)");
                 option = input.readLine();
                 if (option.charAt(0) == 'S' || option.charAt(0) == 's') {
-                    int id = dao.create(new Usuario(-1, name, mail, secretQuestion, secretAnswer, password.hashCode()));
+                    Usuario newUser = new Usuario(-1, name, mail, secretQuestion, secretAnswer, password.hashCode(), false);
+                    int id = dao.create(newUser);
+                    //Caso o Id do usuário criado for 0 esse é um adminstrador
+                    //#region isAdmin
+                    if (id == 0) {
+                        newUser.setIsAdmin(true);
+                        dao.update(newUser);
+                    }
+                    //#endregion
                     he2.create(new UsuarioKeyValuePair(mail, id));
                     System.out.println("Conta criada com sucesso");
                 }
@@ -119,9 +126,8 @@ public class Main {
         System.out.print("Informe seu email: ");
         String email = input.readLine();
         if (!email.isBlank()) {
-            int id = read(email);
-            if (id != -1) {
-                Usuario user = dao.read(id);
+            Usuario user = read(email);
+            if (user != null) {
                 System.out.println("Qual a resposta para a pergunta \"" + user.getPerguntaSecreta() + "\"?");
                 String answer = input.readLine();
 
@@ -148,10 +154,12 @@ public class Main {
         }
     }
 
-    private static int read(String mail) throws Exception {
-        int id = -1;
-        UsuarioKeyValuePair aux = he2.read(mail.hashCode());
-        if(aux != null) id = aux.getId();
-        return id;
+    private static Usuario read(String mail) throws Exception {
+        Usuario result = null;
+        UsuarioKeyValuePair keyPair = he2.read(mail.hashCode());
+        if (keyPair != null) {
+            result = dao.read(keyPair.getId());
+        }
+        return result;
     }
 }

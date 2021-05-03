@@ -226,7 +226,7 @@ public class HashExtensivel<T extends RegistroHashExtensivel<T>> {
             return s;
         }
 
-        protected long endereço(int p) {
+        protected long endereco(int p) {
             if (p > Math.pow(2, profundidadeGlobal))
                 return -1;
             return enderecos[p];
@@ -307,7 +307,7 @@ public class HashExtensivel<T extends RegistroHashExtensivel<T>> {
         int i = diretorio.hash(elem.hashCode());
 
         // Recupera o cesto
-        long enderecoCesto = diretorio.endereço(i);
+        long enderecoCesto = diretorio.endereco(i);
         Cesto c = new Cesto(construtor, quantidadeDadosPorCesto);
         byte[] ba = new byte[c.size()];
         arqCestos.seek(enderecoCesto);
@@ -382,7 +382,7 @@ public class HashExtensivel<T extends RegistroHashExtensivel<T>> {
         int i = diretorio.hash(chave);
 
         // Recupera o cesto
-        long enderecoCesto = diretorio.endereço(i);
+        long enderecoCesto = diretorio.endereco(i);
         Cesto c = new Cesto(construtor, quantidadeDadosPorCesto);
         byte[] ba = new byte[c.size()];
         arqCestos.seek(enderecoCesto);
@@ -405,7 +405,7 @@ public class HashExtensivel<T extends RegistroHashExtensivel<T>> {
         int i = diretorio.hash(elem.hashCode());
 
         // Recupera o cesto
-        long enderecoCesto = diretorio.endereço(i);
+        long enderecoCesto = diretorio.endereco(i);
         Cesto c = new Cesto(construtor, quantidadeDadosPorCesto);
         byte[] ba = new byte[c.size()];
         arqCestos.seek(enderecoCesto);
@@ -436,7 +436,7 @@ public class HashExtensivel<T extends RegistroHashExtensivel<T>> {
         int i = diretorio.hash(chave);
 
         // Recupera o cesto
-        long enderecoCesto = diretorio.endereço(i);
+        long enderecoCesto = diretorio.endereco(i);
         Cesto c = new Cesto(construtor, quantidadeDadosPorCesto);
         byte[] ba = new byte[c.size()];
         arqCestos.seek(enderecoCesto);
