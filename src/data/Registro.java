@@ -3,8 +3,8 @@ package data;
 import java.io.IOException;
 
 public interface Registro {
-    public int getId();
-    public void setId(int n);
-    public byte[] toByteArray() throws IOException;
-    public void fromByteArray(byte[] ba) throws IOException;
+    int getId();
+    void setId(int n);
+    byte[] toByteArray() throws IOException;
+    void fromByteArray(byte[] ba) throws IOException;
 }

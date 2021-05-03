@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eded4c5d-5644-46bd-b81d-6bbd33637e41" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Authenticated.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Authenticated.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/btree/BPlusTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/BPlusTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/btree/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/files/perguntas.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/files/perguntas.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/files/perguntas.hash_c.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/files/perguntas.hash_c.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/files/perguntas.hash_d.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/files/perguntas.hash_d.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/files/perguntas.tree.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/files/perguntas.tree.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/Registro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Registro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/KeyValuePairs/ContatoKeyValuePair.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Usuario.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +42,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../Dev/Linguagens/java/cursodio/beer_api_digital_innovation_one" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />

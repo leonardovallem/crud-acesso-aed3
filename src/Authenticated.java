@@ -187,6 +187,7 @@ public class Authenticated {
 
     private int[] listPerguntas() throws Exception {
         int[] perguntasIds = perguntasStorage.read(loggedUser.getId());
+        if(perguntasIds.length == 0) System.out.println("\n\t### Nenhuma pergunta ###\n");
         for (int i = 0; i < perguntasIds.length; i++) {
             System.out.println((i + 1) + ". " + perguntasDao.read(perguntasIds[i]));
         }
@@ -274,8 +275,7 @@ public class Authenticated {
     }
 
     private void listUsers() throws Exception {
-        usuariosDao.readAll().forEach(item -> System.out.println(
-                "\nUsuário #" + item.getId() + "\nNome: " + item.getNome() + "\nE-mail: " + item.getEmail() + "\n"));
+        usuariosDao.readAll().forEach(System.out::println);
     }
 
     private void deleteUser() throws Exception {

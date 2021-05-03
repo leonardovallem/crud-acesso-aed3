@@ -50,6 +50,11 @@ public class Usuario implements Registro {
         return dados.toByteArray();
     }
 
+    @Override
+    public String toString() {
+        return "\nUsuário #" + this.getId() + "\nNome: " + this.getNome() + "\nE-mail: " + this.getEmail() + "\n";
+    }
+
     public int getId() {
         return id;
     }
