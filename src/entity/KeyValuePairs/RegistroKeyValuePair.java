@@ -1,6 +1,6 @@
 package entity.KeyValuePairs;
 
-import service.RegistroHashExtensivel;
+import data.RegistroHashExtensivel;
 
 import java.io.*;
 

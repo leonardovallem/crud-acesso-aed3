@@ -2,12 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eded4c5d-5644-46bd-b81d-6bbd33637e41" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/config/KeywordHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entity/Resposta.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/PerguntaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/RespostaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Authenticated.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Authenticated.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Registro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Registro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/KeyValuePairs/ContatoKeyValuePair.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/DAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/KeyValuePairs/RegistroKeyValuePair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/KeyValuePairs/RegistroKeyValuePair.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/KeyValuePairs/UsuarioKeyValuePair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/KeyValuePairs/UsuarioKeyValuePair.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/files/Const.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/files/Const.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/RegistroHashExtensivel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/RegistroHashExtensivel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/impl/HashExtensivel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/impl/HashExtensivel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,11 +49,30 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../Dev/Linguagens/java/cursodio/beer_api_digital_innovation_one" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="ReaderModeSettings">
+    <option name="showLigatures" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/files" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="entity" />
+      <recent name="service" />
+    </key>
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -68,6 +95,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
@@ -83,8 +123,14 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1617898937870</updated>
+      <workItem from="1620828552031" duration="200000" />
+      <workItem from="1620829371323" duration="4734000" />
+      <workItem from="1621033485757" duration="4353000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -107,5 +153,9 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

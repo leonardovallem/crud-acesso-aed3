@@ -3,7 +3,7 @@ package dal;
 import files.Const;
 import data.Registro;
 import entity.KeyValuePairs.RegistroKeyValuePair;
-import service.impl.HashExtensivel;
+import data.impl.HashExtensivel;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,11 +23,11 @@ public class DAO<T extends Registro> {
         this.constructor = constructor;
         this.file = file;
 
-        this.raf = new RandomAccessFile(Const.FliesPath + file, "rw");
+        this.raf = new RandomAccessFile(Const.FilesPath + file, "rw");
 
         he = new HashExtensivel<>(RegistroKeyValuePair.class.getConstructor(), 4,
-                Const.FliesPath + file.replace(".db", ".hash_d.db"),
-                Const.FliesPath + file.replace(".db", ".hash_c.db"));
+                Const.FilesPath + file.replace(".db", ".hash_d.db"),
+                Const.FilesPath + file.replace(".db", ".hash_c.db"));
     }
 
     public int create(T objeto) throws IOException {

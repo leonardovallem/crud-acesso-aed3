@@ -21,7 +21,7 @@ v1.0 - 2021
 
 package entity.KeyValuePairs;
 
-import service.RegistroHashExtensivel;
+import data.RegistroHashExtensivel;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

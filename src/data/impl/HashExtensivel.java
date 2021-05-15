@@ -12,9 +12,9 @@ disciplina:
 Implementado pelo Prof. Marcos Kutova
 v1.1 - 2021
 */
-package service.impl;
+package data.impl;
 
-import service.RegistroHashExtensivel;
+import data.RegistroHashExtensivel;
 
 import java.io.*;
 import java.util.ArrayList;

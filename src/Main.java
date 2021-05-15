@@ -2,7 +2,7 @@ import dal.DAO;
 import entity.KeyValuePairs.UsuarioKeyValuePair;
 import files.Const;
 import entity.Usuario;
-import service.impl.HashExtensivel;
+import data.impl.HashExtensivel;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -16,8 +16,8 @@ public class Main {
 
         dao = new DAO<>(Usuario.class.getConstructor(), Const.UsuariosDB);
         he2 = new HashExtensivel<>(UsuarioKeyValuePair.class.getConstructor(), 4,
-                Const.FliesPath + dao.file.replace(".db", ".mail_d.db"),
-                Const.FliesPath + dao.file.replace(".db", ".mail_c.db"));
+                Const.FilesPath + dao.file.replace(".db", ".mail_d.db"),
+                Const.FilesPath + dao.file.replace(".db", ".mail_c.db"));
 
         System.out.println("PERGUNTAS 1.0\n" +
                 "=============");

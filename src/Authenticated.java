@@ -1,11 +1,9 @@
 import dal.DAO;
-import data.BPlusTree;
-import entity.Pergunta;
 import entity.Usuario;
 import files.Const;
+import service.PerguntaService;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
@@ -15,14 +13,12 @@ public class Authenticated {
     private static final BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
     private final Usuario loggedUser;
     private final DAO<Usuario> usuariosDao;
-    private final DAO<Pergunta> perguntasDao;
-    private final BPlusTree perguntasStorage;
+    private final PerguntaService perguntaService;
 
     public Authenticated(Usuario loggedUser) throws Exception {
         this.loggedUser = loggedUser;
         this.usuariosDao = new DAO<>(Usuario.class.getConstructor(), Const.UsuariosDB);
-        this.perguntasDao = new DAO<>(Pergunta.class.getConstructor(), Const.PerguntasDB);
-        this.perguntasStorage = new BPlusTree(5, Const.FliesPath + Const.PerguntasDB.replace(".db", ".tree.db"));
+        perguntaService = new PerguntaService(loggedUser);
     }
 
     /**
@@ -149,7 +145,7 @@ public class Authenticated {
 
         while (option != 0) {
             System.out.println("INÍCIO > MINHAS PERGUNTAS\n");
-            System.out.println("1) Listar\n" + "2) Incluir\n" + "3) Alterar\n" + "4) Arquivar");
+            System.out.println("1) Pesquisar\n" + "2) Listar\n" + "3) Incluir\n" + "4) Alterar\n" + "5) Arquivar");
             System.out.println("\n0) Retornar ao menu anterior\n");
 
             System.out.print("Opção: ");
@@ -160,16 +156,23 @@ public class Authenticated {
                     System.out.println("Voltando ao menu anterior ...\n");
                     break;
                 case 1:
-                    listPerguntas();
+                    System.out.println("Busque as perguntas por palavra chave separadas por ponto e vírgula\n" +
+                            "Ex: código;segurança;tecnologia\n");
+                    System.out.print("Palavras chave:\n\t↳ ");
+
+                    perguntaService.list(input.readLine());
                     break;
                 case 2:
-                    createPergunta();
+                    perguntaService.list();
                     break;
                 case 3:
-                    updatePergunta();
+                    perguntaService.create();
                     break;
                 case 4:
-                    archivePergunta();
+                    perguntaService.update();
+                    break;
+                case 5:
+                    perguntaService.archive();
                     break;
                 default:
                     System.out.println("Opção inválida.");
@@ -183,51 +186,6 @@ public class Authenticated {
 
     private void notifications() {
         System.out.println(" ===== EM BREVE =====");
-    }
-
-    private int[] listPerguntas() throws Exception {
-        int[] perguntasIds = perguntasStorage.read(loggedUser.getId());
-        if(perguntasIds.length == 0) System.out.println("\n\t### Nenhuma pergunta ###\n");
-        for (int i = 0; i < perguntasIds.length; i++) {
-            System.out.println((i + 1) + ". " + perguntasDao.read(perguntasIds[i]));
-        }
-        return perguntasIds;
-    }
-
-    private void createPergunta() throws IOException {
-        System.out.print("O que você deseja perguntar?\n\t↳ ");
-        String perguntar = input.readLine();
-
-        Pergunta pergunta = new Pergunta(loggedUser.getId(), perguntar);
-
-        perguntasDao.create(pergunta);
-        perguntasStorage.create(loggedUser.getId(), pergunta.getId());
-    }
-
-    private void updatePergunta() throws Exception {
-        int[] all = listPerguntas();
-        System.out.println("Qual pergunta você deseja alterar? (1-" + all.length + ")");
-        int alterar = Integer.parseInt(input.readLine());
-
-        Pergunta pergunta = perguntasDao.read(all[alterar - 1]);
-        if (pergunta != null) {
-            System.out.print("O que você deseja perguntar agora?\n\t↳ ");
-            String novaPergunta = input.readLine();
-
-            pergunta.setPergunta(novaPergunta);
-            perguntasDao.update(pergunta);
-        } else
-            System.out.println("Pergunta inválida.");
-    }
-
-    private void archivePergunta() throws Exception {
-        int[] all = listPerguntas();
-        System.out.println("Qual pergunta você deseja arquivar? (1-" + all.length + ")");
-        int arquivar = Integer.parseInt(input.readLine());
-
-        Pergunta pergunta = perguntasDao.read(all[arquivar - 1]);
-        pergunta.setAtiva(false);
-        perguntasDao.update(pergunta);
     }
 
     // Métodos da área restrita para usuários adminstradores
@@ -282,6 +240,7 @@ public class Authenticated {
         System.out.print("Informe o Número/ID do usuário que você deseja excluír: ");
         int exId = Integer.parseInt(input.readLine());
         Usuario exUser = usuariosDao.read(exId);
+
         if (exUser == null) {
             System.out.println("Usuário informado não existe, tente mais tarde");
         } else {
@@ -289,17 +248,7 @@ public class Authenticated {
                     + "\"? (Sim/Não)\nObs: Todos os dados relacionados à esse também serão excluídos");
             String option = input.readLine();
             if (option.charAt(0) == 'S' || option.charAt(0) == 's') {
-                boolean status = true;
-
-                // Obtendo todas as perguntas do usuário e excluíndo
-                int[] exPerguntasIds = perguntasStorage.read(exId);
-                for (int exPerguntaId : exPerguntasIds) {
-                    if (perguntasDao.delete(exPerguntaId)) {
-                        perguntasStorage.delete(exId, exPerguntaId);
-                    } else {
-                        status = false;
-                    }
-                }
+                boolean status = perguntaService.truncate(exId);
 
                 if (!status) {
                     System.out.println(
