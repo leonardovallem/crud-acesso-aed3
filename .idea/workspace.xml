@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="eded4c5d-5644-46bd-b81d-6bbd33637e41" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Authenticated.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Authenticated.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/config/KeywordHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/KeywordHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/PerguntaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/PerguntaService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,7 +48,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="proofread" />
   </component>
   <component name="ReaderModeSettings">
     <option name="showLigatures" value="true" />
@@ -103,7 +101,7 @@
       <workItem from="1620828552031" duration="200000" />
       <workItem from="1620829371323" duration="4734000" />
       <workItem from="1621033485757" duration="4954000" />
-      <workItem from="1621134562137" duration="2426000" />
+      <workItem from="1621134562137" duration="3128000" />
     </task>
     <servers />
   </component>

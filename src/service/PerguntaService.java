@@ -46,7 +46,7 @@ public class PerguntaService {
     }
 
     public List<Integer> list(String chaves) throws Exception {
-        // obtem as palavras-chave relevantes a partir da string pesquisada
+        // obtém as palavras-chave relevantes a partir da string pesquisada
         List<String> keywords = KeywordHandler.relevantKeywords(chaves);
 
         List<List<Integer>> retrievedPerguntas = new ArrayList<>(); // resultados das pesquisas para cada palavra-chave
@@ -57,7 +57,7 @@ public class PerguntaService {
         }
 
         Set<Integer> intersecao = new HashSet<>(retrievedPerguntas.get(0));
-        for(int i=1 ; i < retrievedPerguntas.size() ; i++) {    // obtem perguntas que possuem todas as palavras-chaves
+        for(int i=1 ; i < retrievedPerguntas.size() ; i++) {    // obtém perguntas que possuem todas as palavras-chaves
             Set<Integer> temp = new HashSet<>(retrievedPerguntas.get(i));
             intersecao.retainAll(temp);
         }
@@ -71,9 +71,9 @@ public class PerguntaService {
 
     private void exhibit(List<Integer> perguntas) throws Exception {
         int counter = 1;
-        for (int i = 0; i < perguntas.size(); i++) {
-            var pergunta = perguntasDao.read(perguntas.get(i));
-            if(pergunta.isAtiva()) System.out.println(counter++ + ". " + perguntasDao.read(perguntas.get(i)));
+        for (Integer integer : perguntas) {
+            var pergunta = perguntasDao.read(integer);
+            if (pergunta.isAtiva()) System.out.println(counter++ + ". " + perguntasDao.read(integer));
         }
     }
 
@@ -87,7 +87,7 @@ public class PerguntaService {
         perguntasStorage.create(loggedUser.getId(), pergunta.getId());
 
         String[] keywords = KeywordHandler.normalize(perguntar).split(" ");
-        for(String keyword : keywords) {    // adiciona a pergunta ao indice de cada palavra-chave contida,
+        for(String keyword : keywords) {    // adiciona a pergunta ao índice de cada palavra-chave contida,
             if(KeywordHandler.isRelevant(keyword)) indiceReversoPerguntas.create(keyword, id);  // caso seja relevante
         }
     }
