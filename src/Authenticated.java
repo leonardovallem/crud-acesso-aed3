@@ -156,8 +156,8 @@ public class Authenticated {
                     System.out.println("Voltando ao menu anterior ...\n");
                     break;
                 case 1:
-                    System.out.println("Busque as perguntas por palavra chave separadas por ponto e vírgula\n" +
-                            "Ex: código;segurança;tecnologia\n");
+                    System.out.println("Busque as perguntas por palavras chave separadas por espaço\n" +
+                            "Palavras irrelevantes (como pronomes) serão ignoradas.\n");
                     System.out.print("Palavras chave:\n\t↳ ");
 
                     perguntaService.list(input.readLine());

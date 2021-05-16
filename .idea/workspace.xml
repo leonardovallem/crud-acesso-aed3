@@ -2,20 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eded4c5d-5644-46bd-b81d-6bbd33637e41" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/data/config/KeywordHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entity/Resposta.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/service/PerguntaService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/service/RespostaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Authenticated.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Authenticated.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/DAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/KeyValuePairs/RegistroKeyValuePair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/KeyValuePairs/RegistroKeyValuePair.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/KeyValuePairs/UsuarioKeyValuePair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/KeyValuePairs/UsuarioKeyValuePair.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/files/Const.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/files/Const.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/RegistroHashExtensivel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/RegistroHashExtensivel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/impl/HashExtensivel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/impl/HashExtensivel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/config/KeywordHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/KeywordHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/PerguntaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/PerguntaService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,19 +85,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
@@ -125,7 +102,8 @@
       <updated>1617898937870</updated>
       <workItem from="1620828552031" duration="200000" />
       <workItem from="1620829371323" duration="4734000" />
-      <workItem from="1621033485757" duration="4353000" />
+      <workItem from="1621033485757" duration="4954000" />
+      <workItem from="1621134562137" duration="2426000" />
     </task>
     <servers />
   </component>

@@ -3,7 +3,7 @@ package service;
 import dal.DAO;
 import data.BPlusTree;
 import data.ListaInvertida;
-import data.config.KeywordHandler;
+import config.KeywordHandler;
 import entity.Pergunta;
 import entity.Usuario;
 import files.Const;
@@ -11,7 +11,6 @@ import files.Const;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.text.Normalizer;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -29,43 +28,53 @@ public class PerguntaService {
         this.indiceReversoPerguntas = new ListaInvertida(5, Const.FilesPath + "perguntas-dict.reverse.db", "perguntas-bloco.reverse.db");
     }
 
-    public int[] list() throws Exception {
-        int[] perguntasIds = perguntasStorage.read(loggedUser.getId());
-        if(perguntasIds.length == 0) System.out.println("\n\t### Nenhuma pergunta ###\n");
+    public List<Integer> list() throws Exception {
+        List<Integer> validPerguntas = Arrays.stream(perguntasStorage.read(loggedUser.getId()))
+                .boxed()
+                .filter(pergunta -> {
+                    try {
+                        return perguntasDao.read(pergunta).isAtiva();
+                    } catch (Exception e) {
+                        return false;
+                    }
+                }).collect(Collectors.toList());
 
-        for (int i = 0; i < perguntasIds.length; i++) {
-            var pergunta = perguntasDao.read(perguntasIds[i]);
-            if(pergunta.isAtiva()) System.out.println((i + 1) + ". " + pergunta);
-        }
-        return perguntasIds;
+        if(validPerguntas.size() == 0) System.out.println("\n\t### Nenhuma pergunta ###\n");
+        else exhibit(validPerguntas);
+
+        return validPerguntas;
     }
 
     public List<Integer> list(String chaves) throws Exception {
-        String[] keys = chaves.split(";");
+        // obtem as palavras-chave relevantes a partir da string pesquisada
+        List<String> keywords = KeywordHandler.relevantKeywords(chaves);
 
-        List<List<Integer>> retrievedPerguntas = new ArrayList<>();
-        for(var key : keys) {   // transforma o int[] retornado pela lista invertida em List<Integer>
-            // remove caracteres especiais
-            key = KeywordHandler.normalize(key);
-
-            List<Integer> list = Arrays.stream(indiceReversoPerguntas.read(key)).boxed().collect(Collectors.toList());
-            retrievedPerguntas.add(list);
+        List<List<Integer>> retrievedPerguntas = new ArrayList<>(); // resultados das pesquisas para cada palavra-chave
+        for(var keyword : keywords) {
+            // transforma o int[] retornado pela lista invertida em List<Integer>
+            List<Integer> matchingPerguntas = Arrays.stream(indiceReversoPerguntas.read(keyword)).boxed().collect(Collectors.toList());
+            retrievedPerguntas.add(matchingPerguntas);
         }
 
         Set<Integer> intersecao = new HashSet<>(retrievedPerguntas.get(0));
-        for(int i=1 ; i < retrievedPerguntas.size() ; i++) {
+        for(int i=1 ; i < retrievedPerguntas.size() ; i++) {    // obtem perguntas que possuem todas as palavras-chaves
             Set<Integer> temp = new HashSet<>(retrievedPerguntas.get(i));
             intersecao.retainAll(temp);
         }
 
         List<Integer> finalPerguntas = new ArrayList<>(intersecao);
         if(finalPerguntas.isEmpty()) System.out.println("\n\t### Nenhuma pergunta ###\n");
+        else exhibit(finalPerguntas);
 
-        for (int i = 0; i < finalPerguntas.size(); i++) {
-            var pergunta = perguntasDao.read(finalPerguntas.get(i));
-            if(pergunta.isAtiva()) System.out.println((i + 1) + ". " + perguntasDao.read(finalPerguntas.get(i)));
-        }
         return finalPerguntas;
+    }
+
+    private void exhibit(List<Integer> perguntas) throws Exception {
+        int counter = 1;
+        for (int i = 0; i < perguntas.size(); i++) {
+            var pergunta = perguntasDao.read(perguntas.get(i));
+            if(pergunta.isAtiva()) System.out.println(counter++ + ". " + perguntasDao.read(perguntas.get(i)));
+        }
     }
 
     public void create() throws Exception {
@@ -78,17 +87,17 @@ public class PerguntaService {
         perguntasStorage.create(loggedUser.getId(), pergunta.getId());
 
         String[] keywords = KeywordHandler.normalize(perguntar).split(" ");
-        for(String keyword : keywords) {
-            if(KeywordHandler.isRelevant(keyword)) indiceReversoPerguntas.create(keyword, id);
+        for(String keyword : keywords) {    // adiciona a pergunta ao indice de cada palavra-chave contida,
+            if(KeywordHandler.isRelevant(keyword)) indiceReversoPerguntas.create(keyword, id);  // caso seja relevante
         }
     }
 
     public void update() throws Exception {
-        int[] all = list();
-        System.out.println("Qual pergunta você deseja alterar? (1-" + all.length + ")");
+        List<Integer> all = list();
+        System.out.println("Qual pergunta você deseja alterar? (1-" + all.size() + ")");
         int alterar = Integer.parseInt(input.readLine());
 
-        Pergunta pergunta = perguntasDao.read(all[alterar - 1]);
+        Pergunta pergunta = perguntasDao.read(all.get(alterar - 1));
         if (pergunta != null) {
             System.out.print("O que você deseja perguntar agora?\n\t↳ ");
             String novaPergunta = input.readLine();
@@ -99,11 +108,11 @@ public class PerguntaService {
     }
 
     public void archive() throws Exception {
-        int[] all = list();
-        System.out.println("Qual pergunta você deseja arquivar? (1-" + all.length + ")");
+        List<Integer> all = list();
+        System.out.println("Qual pergunta você deseja arquivar? (1-" + all.size() + ")");
         int arquivar = Integer.parseInt(input.readLine());
 
-        Pergunta pergunta = perguntasDao.read(all[arquivar - 1]);
+        Pergunta pergunta = perguntasDao.read(all.get(arquivar - 1));
         pergunta.setAtiva(false);
         perguntasDao.update(pergunta);
     }
