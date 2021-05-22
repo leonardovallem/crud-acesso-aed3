@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="eded4c5d-5644-46bd-b81d-6bbd33637e41" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/perguntas-bloco.reverse.db" beforeDir="false" afterPath="$PROJECT_DIR$/perguntas-bloco.reverse.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/PerguntaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/PerguntaService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -104,6 +104,8 @@
       <workItem from="1621033485757" duration="4954000" />
       <workItem from="1621134562137" duration="3246000" />
       <workItem from="1621635823853" duration="3843000" />
+      <workItem from="1621694781448" duration="2454000" />
+      <workItem from="1621697399142" duration="4872000" />
     </task>
     <servers />
   </component>

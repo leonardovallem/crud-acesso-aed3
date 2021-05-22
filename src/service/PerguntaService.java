@@ -98,12 +98,28 @@ public class PerguntaService {
         int alterar = Integer.parseInt(input.readLine());
 
         Pergunta pergunta = perguntasDao.read(all.get(alterar - 1));
+
+        List<String> keywords = KeywordHandler.relevantKeywords(pergunta.getPergunta());
+        keywords.forEach(keyword -> {
+            try {
+                indiceReversoPerguntas.delete(keyword, pergunta.getId());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
         if (pergunta != null) {
             System.out.print("O que você deseja perguntar agora?\n\t↳ ");
             String novaPergunta = input.readLine();
 
+            String[] newKeywords = KeywordHandler.normalize(novaPergunta).split(" ");
+            for(String keyword : newKeywords) {    // adiciona a pergunta ao índice de cada palavra-chave contida,
+                if(KeywordHandler.isRelevant(keyword)) indiceReversoPerguntas.create(keyword, pergunta.getId());  // caso seja relevante
+            }
+
             pergunta.setPergunta(novaPergunta);
             perguntasDao.update(pergunta);
+
         } else System.out.println("Pergunta inválida.");
     }
 
