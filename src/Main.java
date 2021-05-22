@@ -62,8 +62,8 @@ public class Main {
 
         do {
             mail = input.readLine();
-            usuario = read(mail);
         } while(mail.isBlank());
+        usuario = read(mail);
 
         if(usuario != null) {
             System.out.println("Digite sua senha:");

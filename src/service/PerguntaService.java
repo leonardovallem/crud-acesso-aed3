@@ -115,6 +115,15 @@ public class PerguntaService {
         Pergunta pergunta = perguntasDao.read(all.get(arquivar - 1));
         pergunta.setAtiva(false);
         perguntasDao.update(pergunta);
+
+        List<String> keywords = KeywordHandler.relevantKeywords(pergunta.getPergunta());
+        keywords.forEach(keyword -> {
+            try {
+                indiceReversoPerguntas.delete(keyword, pergunta.getId());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public boolean truncate(int userId) throws IOException {
