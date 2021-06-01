@@ -6,9 +6,8 @@ import data.BPlusTree;
 import data.ListaInvertida;
 import config.KeywordHandler;
 import entity.Pergunta;
-import entity.Resposta;
 import entity.Usuario;
-import files.Const;
+import config.Const;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,9 +1,7 @@
 package controller;
 
-import dal.DAO;
 import entity.Pergunta;
 import entity.Usuario;
-import files.Const;
 import service.PerguntaService;
 import service.RespostaService;
 

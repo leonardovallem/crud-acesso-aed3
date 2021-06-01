@@ -4,9 +4,7 @@ import controller.UserPerguntasController;
 import controller.UserRespostasController;
 import dal.DAO;
 import entity.Usuario;
-import files.Const;
-import service.PerguntaService;
-import service.UsuarioService;
+import config.Const;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

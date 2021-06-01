@@ -1,6 +1,6 @@
 package dal;
 
-import files.Const;
+import config.Const;
 import data.Registro;
 import entity.KeyValuePairs.RegistroKeyValuePair;
 import data.impl.HashExtensivel;

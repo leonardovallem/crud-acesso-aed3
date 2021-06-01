@@ -2,7 +2,7 @@ package service;
 
 import dal.DAO;
 import entity.Usuario;
-import files.Const;
+import config.Const;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

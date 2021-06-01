@@ -7,7 +7,7 @@ import data.BPlusTree;
 import data.ListaInvertida;
 import entity.Resposta;
 import entity.Usuario;
-import files.Const;
+import config.Const;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

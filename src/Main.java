@@ -1,6 +1,6 @@
 import dal.DAO;
 import entity.KeyValuePairs.UsuarioKeyValuePair;
-import files.Const;
+import config.Const;
 import entity.Usuario;
 import data.impl.HashExtensivel;
 
