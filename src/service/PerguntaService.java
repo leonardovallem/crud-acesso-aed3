@@ -138,7 +138,6 @@ public class PerguntaService {
         }
     }
 
-    // @TODO checar se o usuário já avaliou a pergunta
     public void rate(Pergunta pergunta) throws Exception {
         System.out.print("Dê uma nota de 1 a 5\n\t☆ ");
 

@@ -55,7 +55,7 @@ public class AllPerguntasController {
                     allPerguntas = new LinkedList<>(perguntaService.getAllSorted());
                     int min = 0, max = 10;
                     int page = 1;
-                    char userOpt = '1';
+                    String userOpt = "";
 
                     while (page != 0) {
                         System.out.println("INÍCIO > PERGUNTAS MAIS RECENTES\nPágina " + page + "\n");
@@ -66,27 +66,27 @@ public class AllPerguntasController {
 
                         boolean hasNext = ((page * 10) + allPerguntas.size() % max) <= allPerguntas.size(), hasPrev = page > 1;
                         String menuOptions = "Selecionar" +
-                                (allPerguntas.size() == 0 ? " " : " uma pergunta (1-"+(lastIndex%11)+")\nou ")
+                                (allPerguntas.size() == 0 ? " " : " uma pergunta (1-"+((lastIndex-max)+10)+")\nou ")
                                 + "0 para voltar";
 
                         if(hasNext) menuOptions = "\">\" para avançar a página\n".concat(menuOptions);
                         if(hasPrev) menuOptions = "Voltar página com \"<\"\nou ".concat(menuOptions);
                         System.out.println(menuOptions);
 
-                        userOpt = INPUT.readLine().charAt(0);
+                        userOpt = INPUT.readLine();
 
                         switch (userOpt) {
-                            case '0':
+                            case "0":
                                 page = 0;
                                 break;
-                            case '>':
+                            case ">":
                                 if(hasNext) {
                                     min += 10;
                                     max += 10;
                                     page++;
                                     break;
                                 }
-                            case '<':
+                            case "<":
                                 if(hasPrev) {
                                     min -= 10;
                                     max -= 10;
@@ -94,7 +94,7 @@ public class AllPerguntasController {
                                     break;
                                 }
                             default:
-                                int number = userOpt - '0';
+                                int number = Integer.parseInt(userOpt);
                                 // se o usuário passar o número de uma pergunta, ela entra em destaque e dá acesso às respostas
                                 if(number > 0 && number <= lastIndex) {
                                     Pergunta pergunta = perguntaService.getOne(allPerguntas.get(min + number - 1));
@@ -102,8 +102,6 @@ public class AllPerguntasController {
                                 }
                         }
                     }
-                    // ">" para próxima página
-                    // "<" para página anterior
                     break;
                 default:
                     System.out.println("Opção inválida.");

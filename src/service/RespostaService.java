@@ -10,6 +10,7 @@ import entity.Usuario;
 import config.Const;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -87,6 +88,10 @@ public class RespostaService {
         return finalPerguntas;
     }
 
+    public Resposta getOne(int respostaSelecionada) throws Exception {
+        return respostasDao.read(respostaSelecionada);
+    }
+
     private void exhibit(List<Integer> respostas) throws Exception {
         DAO<Usuario> usuariosDAO = new DAO<>(Usuario.class.getConstructor(), Const.UsuariosDB);;
 
@@ -116,7 +121,6 @@ public class RespostaService {
         }
     }
 
-    // @TODO checar se o usuário já avaliou a resposta
     public void rate(int perguntaId) throws Exception {
         List<Integer> all = list(perguntaId);
         System.out.println("Qual resposta você deseja avaliar? (1-" + all.size() + ")");
@@ -127,6 +131,14 @@ public class RespostaService {
         System.out.println(resposta);
         System.out.print("Dê uma nota de 1 a 5\n\t☆ ");
 
+        float nota = Float.parseFloat(input.readLine().replace(",", "."));
+
+        resposta.rate(nota);
+        respostasDao.update(resposta);
+    }
+
+    public void rateOne(Resposta resposta) throws IOException {
+        System.out.print("Dê uma nota de 1 a 5\n\t☆ ");
         float nota = Float.parseFloat(input.readLine().replace(",", "."));
 
         resposta.rate(nota);
@@ -144,17 +156,26 @@ public class RespostaService {
 
         Resposta resposta = respostasDao.read(all.get(alterar - 1));
         if (resposta != null) {
-            System.out.print("O que você deseja responder agora?\n\t↳ ");
-            String novaResposta = input.readLine();
-
-            resposta.setResposta(novaResposta);
-            respostasDao.update(resposta);
+            updateOne(resposta);
         } else
             System.out.println("Resposta inválida.");
     }
 
+    public void updateOne(Resposta resposta) throws IOException {
+        System.out.print("O que você deseja responder agora?\n\t↳ ");
+        String novaResposta = input.readLine();
+
+        resposta.setResposta(novaResposta);
+        respostasDao.update(resposta);
+    }
+
     public void archive() throws Exception {
         archive(null);
+    }
+
+    public void archiveOne(Resposta resposta) {
+        resposta.setAtiva(false);
+        respostasDao.update(resposta);
     }
 
     public void archive(Integer perguntaId) throws Exception {
