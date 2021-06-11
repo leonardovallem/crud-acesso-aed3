@@ -22,6 +22,7 @@ public class RespostaService {
     private final DAO<Resposta> respostasDao;
     private final BPlusTree respostasOfPergunta;
     private final BPlusTree respostasOfUsuario;
+    private final BPlusTree ratedRespostas;
     private final ListaInvertida indiceReversoRespostas;
 
     public RespostaService(Usuario loggedUser) throws Exception {
@@ -29,6 +30,7 @@ public class RespostaService {
         this.respostasDao = new DAO<>(Resposta.class.getConstructor(), Const.RespostasOfPerguntaDB);
         this.respostasOfPergunta = new BPlusTree(5, Const.FilesPath + Const.RespostasOfPerguntaDB.replace(".db", ".tree.db"));
         this.respostasOfUsuario = new BPlusTree(5, Const.FilesPath + Const.RespostasOfUsuarioDB.replace(".db", ".tree.db"));
+        this.ratedRespostas =  new BPlusTree(5, Const.FilesPath + Const.VotedRespostasDB.replace(".db", ".tree.db"));
         this.indiceReversoRespostas = new ListaInvertida(5, Const.FilesPath + "respostas-dict.reverse.db", Const.FilesPath + "respostas-bloco.reverse.db");
     }
 
@@ -140,6 +142,10 @@ public class RespostaService {
     public void rateOne(Resposta resposta) throws IOException {
         System.out.print("Dê uma nota de 1 a 5\n\t☆ ");
         float nota = Float.parseFloat(input.readLine().replace(",", "."));
+        while (nota < 1 && nota > 5) {
+            System.out.print("Nota inválida. Tente novamente.\n\t☆ ");
+            nota = Float.parseFloat(input.readLine().replace(",", "."));
+        }
 
         resposta.rate(nota);
         respostasDao.update(resposta);

@@ -88,7 +88,7 @@ public class Main {
 
     private static void createAccount() throws Exception {
         String mail, name, password, secretQuestion, secretAnswer, option;
-        System.out.println("Informe seu email:\n");
+        System.out.println("Informe seu email:");
         mail = input.readLine();
 
         if (!mail.isBlank()) {

@@ -1,19 +1,8 @@
 package entity;
 
-import data.Registro;
-
-import java.io.*;
 import java.util.Date;
 
-public class Pergunta implements Registro {
-    private int id;
-    private int idUsuario;
-    private String pergunta;
-    private int avaliacoes;
-    private float nota;
-    private boolean ativa;
-    private long criacao;
-
+public class Pergunta extends Postagem {
     public Pergunta() {
         this(-1, -1, "", 0, 0, true, System.currentTimeMillis());
     }
@@ -23,42 +12,7 @@ public class Pergunta implements Registro {
     }
 
     public Pergunta(int id, int idUsuario, String pergunta, int avaliacoes, float nota, boolean ativa, long criacao) {
-        this.id = id;
-        this.idUsuario = idUsuario;
-        this.pergunta = pergunta;
-        this.nota = nota;
-        this.ativa = ativa;
-        this.criacao = criacao;
-    }
-
-    @Override
-    public byte[] toByteArray() throws IOException {
-        ByteArrayOutputStream dados = new ByteArrayOutputStream();
-        DataOutputStream saida = new DataOutputStream(dados);
-
-        saida.writeInt(this.id);
-        saida.writeInt(this.idUsuario);
-        saida.writeUTF(this.pergunta);
-        saida.writeInt(this.avaliacoes);
-        saida.writeFloat(this.nota);
-        saida.writeBoolean(this.ativa);
-        saida.writeLong(this.criacao);
-
-        return dados.toByteArray();
-    }
-
-    @Override
-    public void fromByteArray(byte[] bytes) throws IOException {
-        ByteArrayInputStream dados = new ByteArrayInputStream(bytes);
-        DataInputStream entrada = new DataInputStream(dados);
-
-        this.id = entrada.readInt();
-        this.idUsuario = entrada.readInt();
-        this.pergunta = entrada.readUTF();
-        this.avaliacoes = entrada.readInt();
-        this.nota = entrada.readFloat();
-        this.ativa = entrada.readBoolean();
-        this.criacao = entrada.readLong();
+        super(id, idUsuario, pergunta, avaliacoes, nota, ativa, criacao);
     }
 
     @Override
@@ -69,20 +23,11 @@ public class Pergunta implements Registro {
     public String toString(Usuario usuario) {
         return new Date(criacao) + " - ☆ " + getNotaGeral() + " em " + this.avaliacoes + " Avaliações\n" +
                 (usuario == null ? "" : "\t" + usuario.getNome() + " perguntou:\n")
-                + "\t  ↳ " + pergunta + "\n";
+                + "\t  ↳ " + conteudo + "\n";
     }
 
     private String getNotaGeral() {
         return this.nota <= 0 ? "N/A" : String.format("%.1f", this.nota);
-    }
-
-    @Override
-    public int getId() {
-        return id;
-    }
-    @Override
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void rate(float novaNota) {
@@ -96,10 +41,10 @@ public class Pergunta implements Registro {
         this.idUsuario = idUsuario;
     }
     public String getPergunta() {
-        return pergunta;
+        return conteudo;
     }
     public void setPergunta(String pergunta) {
-        this.pergunta = pergunta;
+        this.conteudo = pergunta;
     }
     public float getNota() {
         return nota;

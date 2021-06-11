@@ -67,6 +67,8 @@ public class RespostasController {
 
         boolean running = true;
         while(running) {
+            System.out.println(resposta);
+
             String menuOptions = "\n1) Avaliar resposta\n";
             if (respostaIsFromUsuario)
                 menuOptions = menuOptions.concat("2) Alterar resposta\n3) Arquivar resposta\n");
@@ -74,7 +76,6 @@ public class RespostasController {
             System.out.println(menuOptions + "\n0) Voltar à pergunta");
             int chosen = Integer.parseInt(INPUT.readLine());
 
-            System.out.println(resposta);
             switch (chosen) {
                 case 0:
                     running = false;

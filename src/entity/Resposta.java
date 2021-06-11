@@ -1,19 +1,10 @@
 package entity;
 
-import data.Registro;
-
 import java.io.*;
 import java.util.Date;
 
-public class Resposta implements Registro {
-    private int id;
-    private int idUsuario;
+public class Resposta extends Postagem {
     private int idPergunta;
-    private String resposta;
-    private int avaliacoes;
-    private float nota;
-    private boolean ativa;
-    private long criacao;
 
     public Resposta() {
         this(-1, -1, -1, "", 0, 0, true, System.currentTimeMillis());
@@ -24,13 +15,8 @@ public class Resposta implements Registro {
     }
 
     public Resposta(int id, int idUsuario, int idPergunta, String resposta, int avaliacoes, float nota, boolean ativa, long criacao) {
-        this.id = id;
-        this.idUsuario = idUsuario;
+        super(id, idUsuario, resposta, avaliacoes, nota, ativa, criacao);
         this.idPergunta = idPergunta;
-        this.resposta = resposta;
-        this.nota = nota;
-        this.ativa = ativa;
-        this.criacao = criacao;
     }
 
     @Override
@@ -41,7 +27,7 @@ public class Resposta implements Registro {
         saida.writeInt(this.id);
         saida.writeInt(this.idUsuario);
         saida.writeInt(this.idPergunta);
-        saida.writeUTF(this.resposta);
+        saida.writeUTF(this.conteudo);
         saida.writeInt(this.avaliacoes);
         saida.writeFloat(this.nota);
         saida.writeBoolean(this.ativa);
@@ -59,7 +45,7 @@ public class Resposta implements Registro {
     public String toString(Usuario usuario) {
         return new Date(criacao) + " - ☆ " + getNotaGeral() + " em " + this.avaliacoes + " Avaliações\n" +
                 (usuario == null ? "" : "\t| " + usuario.getNome() + " respondeu:\n")
-                + "\t|  ↳ " + resposta + "\n\t|";
+                + "\t|  ↳ " + conteudo + "\n\t|";
     }
 
     private String getNotaGeral() {
@@ -74,7 +60,7 @@ public class Resposta implements Registro {
         this.id = entrada.readInt();
         this.idUsuario = entrada.readInt();
         this.idPergunta = entrada.readInt();
-        this.resposta = entrada.readUTF();
+        this.conteudo = entrada.readUTF();
         this.avaliacoes = entrada.readInt();
         this.nota = entrada.readFloat();
         this.ativa = entrada.readBoolean();
@@ -90,10 +76,6 @@ public class Resposta implements Registro {
         this.id = id;
     }
 
-    public void rate(float novaNota) {
-        setNota( ((this.avaliacoes++ * this.nota) + novaNota) / this.avaliacoes );
-    }
-
     public int getIdUsuario() {
         return idUsuario;
     }
@@ -107,10 +89,10 @@ public class Resposta implements Registro {
         this.idPergunta = idPergunta;
     }
     public String getResposta() {
-        return resposta;
+        return conteudo;
     }
     public void setResposta(String resposta) {
-        this.resposta = resposta;
+        this.conteudo = resposta;
     }
     public float getNota() {
         return nota;

@@ -120,8 +120,6 @@ public class AllPerguntasController {
             if(chosen == 0) return;
 
             Pergunta pergunta = perguntaService.getOne(matchingPerguntas.get(chosen - 1));
-            System.out.println(pergunta);
-
             respostasController.menu(pergunta);
         } while(chosen != 0);
     }

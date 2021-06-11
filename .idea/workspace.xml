@@ -2,25 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eded4c5d-5644-46bd-b81d-6bbd33637e41" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/entity/Nota.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entity/Postagem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/Const.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/Const.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/AllPerguntasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/AllPerguntasController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/RespostasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/RespostasController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/files/perguntas-dict.reverse.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/files/perguntas.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/files/perguntas.hash_c.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/files/perguntas.hash_d.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/files/perguntas.tree.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/files/usuarios.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/files/usuarios.hash_c.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/files/usuarios.hash_d.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/files/usuarios.mail_c.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/files/usuarios.mail_d.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Pergunta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Pergunta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Resposta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Resposta.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/PerguntaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/PerguntaService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/RespostaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/RespostaService.java" afterDir="false" />
     </list>
-    <list id="c6ca2930-2527-4a76-a708-79578c16b401" name="Changes by jmarc" comment="">
-      <change beforePath="$PROJECT_DIR$/src/controller/RespostasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/RespostasController.java" afterDir="false" />
-    </list>
+    <list id="c6ca2930-2527-4a76-a708-79578c16b401" name="Changes by jmarc" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,6 +23,13 @@
   <component name="DefaultGradleProjectSettings">
     <option name="testRunner" value="GRADLE" />
     <option name="delegatedBuild" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -55,19 +56,6 @@
         <option value="$PROJECT_DIR$/src/config/Const.java" />
       </list>
     </option>
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/controller/RespostasController.java">
-      <ranges>
-        <range start1="4" end1="4" start2="4" end2="5" changelist="eded4c5d-5644-46bd-b81d-6bbd33637e41" />
-        <range start1="8" end1="9" start2="9" end2="9" changelist="c6ca2930-2527-4a76-a708-79578c16b401" />
-        <range start1="18" end1="18" start2="18" end2="19" changelist="eded4c5d-5644-46bd-b81d-6bbd33637e41" />
-        <range start1="21" end1="22" start2="22" end2="24" changelist="eded4c5d-5644-46bd-b81d-6bbd33637e41" />
-        <range start1="33" end1="34" start2="35" end2="36" changelist="eded4c5d-5644-46bd-b81d-6bbd33637e41" />
-        <range start1="47" end1="48" start2="49" end2="50" changelist="eded4c5d-5644-46bd-b81d-6bbd33637e41" />
-        <range start1="55" end1="55" start2="57" end2="99" changelist="eded4c5d-5644-46bd-b81d-6bbd33637e41" />
-      </ranges>
-    </file>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
@@ -151,14 +139,25 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="ReaderModeSettings">
+    <option name="showLigatures" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -169,18 +168,20 @@
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="Acesso" />
+      <module name="crud-acesso-aed3" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -205,6 +206,9 @@
       <workItem from="1622580904593" duration="385000" />
       <workItem from="1622581300843" duration="585000" />
       <workItem from="1622582587599" duration="7020000" />
+      <workItem from="1623373970579" duration="4264000" />
+      <workItem from="1623378281191" duration="560000" />
+      <workItem from="1623378867764" duration="2014000" />
     </task>
     <servers />
   </component>
@@ -274,6 +278,10 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/service/RespostaService.java">

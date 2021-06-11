@@ -5,6 +5,7 @@ import dal.DAO;
 import data.BPlusTree;
 import data.ListaInvertida;
 import config.KeywordHandler;
+import entity.Nota;
 import entity.Pergunta;
 import entity.Usuario;
 import config.Const;
@@ -20,12 +21,14 @@ public class PerguntaService {
     private final Usuario loggedUser;
     private final DAO<Pergunta> perguntasDao;
     private final BPlusTree perguntasStorage;
+    private final BPlusTree ratedPerguntas;
     private final ListaInvertida indiceReversoPerguntas;
 
     public PerguntaService(Usuario loggedUser) throws Exception {
         this.loggedUser = loggedUser;
         this.perguntasDao = new DAO<>(Pergunta.class.getConstructor(), Const.PerguntasDB);
         this.perguntasStorage = new BPlusTree(5, Const.FilesPath + Const.PerguntasDB.replace(".db", ".tree.db"));
+        this.ratedPerguntas =  new BPlusTree(5, Const.FilesPath + Const.VotedPerguntasDB.replace(".db", ".tree.db"));
         this.indiceReversoPerguntas = new ListaInvertida(5, Const.FilesPath + "perguntas-dict.reverse.db", Const.FilesPath + "perguntas-bloco.reverse.db");
     }
 
@@ -140,10 +143,18 @@ public class PerguntaService {
 
     public void rate(Pergunta pergunta) throws Exception {
         System.out.print("Dê uma nota de 1 a 5\n\t☆ ");
+        float valorNota = Float.parseFloat(input.readLine().replace(",", "."));
+        while (valorNota < 1 && valorNota > 5) {
+            System.out.print("Nota inválida. Tente novamente.\n\t☆ ");
+            valorNota = Float.parseFloat(input.readLine().replace(",", "."));
+        }
 
-        float nota = Float.parseFloat(input.readLine().replace(",", "."));
+        Nota nota = new Nota(loggedUser.getId(), pergunta.getId(), valorNota);
+        DAO<Nota> notasDAO = new DAO<>(Nota.class.getConstructor(), Const.NotasDB);
 
-        pergunta.rate(nota);
+        pergunta.rate(valorNota);
+        notasDAO.create(nota);
+        ratedPerguntas.create(loggedUser.getId(), pergunta.getId());    // armazena quais perguntas o usuário avaliou
         perguntasDao.update(pergunta);
     }
 
