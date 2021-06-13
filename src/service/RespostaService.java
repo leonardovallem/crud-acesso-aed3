@@ -5,6 +5,7 @@ import config.SetUtils;
 import dal.DAO;
 import data.BPlusTree;
 import data.ListaInvertida;
+import entity.Nota;
 import entity.Resposta;
 import entity.Usuario;
 import config.Const;
@@ -139,16 +140,31 @@ public class RespostaService {
         respostasDao.update(resposta);
     }
 
-    public void rateOne(Resposta resposta) throws IOException {
-        System.out.print("Dê uma nota de 1 a 5\n\t☆ ");
-        float nota = Float.parseFloat(input.readLine().replace(",", "."));
-        while (nota < 1 && nota > 5) {
-            System.out.print("Nota inválida. Tente novamente.\n\t☆ ");
-            nota = Float.parseFloat(input.readLine().replace(",", "."));
+    public void rateOne(Resposta resposta) throws Exception {
+        boolean voted = false;
+        int[] ratings = ratedRespostas.read(loggedUser.getId());
+        if(ratings != null) for(int id : ratings){
+            if(resposta.getId() == id){
+                voted = true;
+                System.out.println("\nVoto já efetuado\n");
+            }
+        }
+        if(!voted){
+            System.out.print("Dê uma nota de 1 a 5\n\t☆ ");
+            float valorNota = Float.parseFloat(input.readLine().replace(",", "."));
+            while (valorNota < 1 && valorNota > 5) {
+                System.out.print("Nota inválida. Tente novamente.\n\t☆ ");
+                valorNota = Float.parseFloat(input.readLine().replace(",", "."));
+            }
+            Nota nota = new Nota(loggedUser.getId(), resposta.getId(), (byte) 'P', valorNota);
+            DAO<Nota> notasDAO = new DAO<>(Nota.class.getConstructor(), Const.NotasDB);
+            notasDAO.create(nota);
+
+            resposta.rate(valorNota);
+            respostasDao.update(resposta);
+            ratedRespostas.create(loggedUser.getId(), resposta.getId());
         }
 
-        resposta.rate(nota);
-        respostasDao.update(resposta);
     }
 
     public void update() throws Exception {

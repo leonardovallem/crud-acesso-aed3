@@ -2,19 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eded4c5d-5644-46bd-b81d-6bbd33637e41" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/entity/Nota.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entity/Postagem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/Const.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/Const.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/AllPerguntasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/AllPerguntasController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/RespostasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/RespostasController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Pergunta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Pergunta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Resposta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Resposta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/PerguntaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/PerguntaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Nota.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Nota.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/RespostaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/RespostaService.java" afterDir="false" />
     </list>
     <list id="c6ca2930-2527-4a76-a708-79578c16b401" name="Changes by jmarc" comment="" />
+    <list id="f37cde2e-8283-4d7a-b176-70a73956b59c" name="Changes by vitor" comment="">
+      <change beforePath="$PROJECT_DIR$/src/entity/Nota.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Nota.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/PerguntaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/PerguntaService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,7 +33,11 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
-    <option name="UPDATE_TYPE" value="MERGE" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="worflow-development" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -56,6 +56,19 @@
         <option value="$PROJECT_DIR$/src/config/Const.java" />
       </list>
     </option>
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/entity/Nota.java">
+      <ranges>
+        <range start1="10" end1="10" start2="10" end2="11" changelist="f37cde2e-8283-4d7a-b176-70a73956b59c" />
+        <range start1="13" end1="14" start2="14" end2="15" changelist="f37cde2e-8283-4d7a-b176-70a73956b59c" />
+        <range start1="16" end1="18" start2="17" end2="19" changelist="f37cde2e-8283-4d7a-b176-70a73956b59c" />
+        <range start1="20" end1="21" start2="21" end2="22" changelist="eded4c5d-5644-46bd-b81d-6bbd33637e41" />
+        <range start1="24" end1="24" start2="25" end2="26" changelist="f37cde2e-8283-4d7a-b176-70a73956b59c" />
+        <range start1="41" end1="42" start2="43" end2="44" changelist="eded4c5d-5644-46bd-b81d-6bbd33637e41" />
+        <range start1="50" end1="51" start2="52" end2="53" changelist="eded4c5d-5644-46bd-b81d-6bbd33637e41" />
+      </ranges>
+    </file>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
@@ -173,15 +186,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

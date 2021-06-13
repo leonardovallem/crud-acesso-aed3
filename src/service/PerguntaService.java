@@ -142,20 +142,30 @@ public class PerguntaService {
     }
 
     public void rate(Pergunta pergunta) throws Exception {
-        System.out.print("Dê uma nota de 1 a 5\n\t☆ ");
-        float valorNota = Float.parseFloat(input.readLine().replace(",", "."));
-        while (valorNota < 1 && valorNota > 5) {
-            System.out.print("Nota inválida. Tente novamente.\n\t☆ ");
-            valorNota = Float.parseFloat(input.readLine().replace(",", "."));
+        boolean voted = false;
+        int[] ratings = ratedPerguntas.read(loggedUser.getId());
+        if(ratings != null) for(int id : ratings){
+            if(pergunta.getId() == id){
+                voted = true;
+                System.out.println("\nVoto já efetuado\n");
+            }
         }
+        if(!voted){
+            System.out.print("Dê uma nota de 1 a 5\n\t☆ ");
+            float valorNota = Float.parseFloat(input.readLine().replace(",", "."));
+            while (valorNota < 1 && valorNota > 5) {
+                System.out.print("Nota inválida. Tente novamente.\n\t☆ ");
+                valorNota = Float.parseFloat(input.readLine().replace(",", "."));
+            }
 
-        Nota nota = new Nota(loggedUser.getId(), pergunta.getId(), valorNota);
-        DAO<Nota> notasDAO = new DAO<>(Nota.class.getConstructor(), Const.NotasDB);
+            Nota nota = new Nota(loggedUser.getId(), pergunta.getId(), (byte) 'P', valorNota);
+            DAO<Nota> notasDAO = new DAO<>(Nota.class.getConstructor(), Const.NotasDB);
 
-        pergunta.rate(valorNota);
-        notasDAO.create(nota);
-        ratedPerguntas.create(loggedUser.getId(), pergunta.getId());    // armazena quais perguntas o usuário avaliou
-        perguntasDao.update(pergunta);
+            pergunta.rate(valorNota);
+            notasDAO.create(nota);
+            ratedPerguntas.create(loggedUser.getId(), pergunta.getId());    // armazena quais perguntas o usuário avaliou
+            perguntasDao.update(pergunta);
+        }
     }
 
     public void update() throws Exception {
