@@ -41,7 +41,11 @@ public class Nota implements Registro {
     public byte[] toByteArray() throws IOException {
         ByteArrayOutputStream dados = new ByteArrayOutputStream();
         DataOutputStream saida = new DataOutputStream(dados);
-        //saida.writeLong(this.criacao);
+        saida.writeInt(this.id);
+        saida.writeInt(this.idUsuario);
+        saida.writeInt(this.idPostagem);
+        saida.writeByte(this.tipo);
+        saida.writeFloat(this.voto);
 
         return dados.toByteArray();
     }
@@ -50,6 +54,10 @@ public class Nota implements Registro {
     public void fromByteArray(byte[] bytes) throws IOException {
         ByteArrayInputStream dados = new ByteArrayInputStream(bytes);
         DataInputStream entrada = new DataInputStream(dados);
-        //this.criacao = entrada.readLong();
+        this.id = entrada.readInt();
+        this.idUsuario = entrada.readInt();
+        this.idPostagem = entrada.readInt();
+        this.tipo = entrada.readByte();
+        this.voto = entrada.readFloat();
     }
 }

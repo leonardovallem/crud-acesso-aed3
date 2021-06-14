@@ -4,13 +4,9 @@
     <list default="true" id="eded4c5d-5644-46bd-b81d-6bbd33637e41" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entity/Nota.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Nota.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/RespostaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/RespostaService.java" afterDir="false" />
     </list>
     <list id="c6ca2930-2527-4a76-a708-79578c16b401" name="Changes by jmarc" comment="" />
-    <list id="f37cde2e-8283-4d7a-b176-70a73956b59c" name="Changes by vitor" comment="">
-      <change beforePath="$PROJECT_DIR$/src/entity/Nota.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Nota.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/PerguntaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/PerguntaService.java" afterDir="false" />
-    </list>
+    <list id="f37cde2e-8283-4d7a-b176-70a73956b59c" name="Changes by vitor" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,19 +52,6 @@
         <option value="$PROJECT_DIR$/src/config/Const.java" />
       </list>
     </option>
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/entity/Nota.java">
-      <ranges>
-        <range start1="10" end1="10" start2="10" end2="11" changelist="f37cde2e-8283-4d7a-b176-70a73956b59c" />
-        <range start1="13" end1="14" start2="14" end2="15" changelist="f37cde2e-8283-4d7a-b176-70a73956b59c" />
-        <range start1="16" end1="18" start2="17" end2="19" changelist="f37cde2e-8283-4d7a-b176-70a73956b59c" />
-        <range start1="20" end1="21" start2="21" end2="22" changelist="eded4c5d-5644-46bd-b81d-6bbd33637e41" />
-        <range start1="24" end1="24" start2="25" end2="26" changelist="f37cde2e-8283-4d7a-b176-70a73956b59c" />
-        <range start1="41" end1="42" start2="43" end2="44" changelist="eded4c5d-5644-46bd-b81d-6bbd33637e41" />
-        <range start1="50" end1="51" start2="52" end2="53" changelist="eded4c5d-5644-46bd-b81d-6bbd33637e41" />
-      </ranges>
-    </file>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
@@ -164,7 +147,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
@@ -181,7 +164,7 @@
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="crud-acesso-aed3" />
+      <module name="crud2" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -220,6 +203,8 @@
       <workItem from="1623373970579" duration="4264000" />
       <workItem from="1623378281191" duration="560000" />
       <workItem from="1623378867764" duration="2014000" />
+      <workItem from="1623684350031" duration="665000" />
+      <workItem from="1623688041948" duration="481000" />
     </task>
     <servers />
   </component>
